@@ -18,7 +18,7 @@ export default function About() {
       ref={ref}
       id="about"
       className="relative py-20 md:py-32 overflow-hidden"
-      style={{ backgroundColor: '#0D0505' }}
+      style={{ backgroundColor: '#3D0A10' }}
     >
       {/* Textured background — subtle crimson noise */}
       <div
@@ -39,7 +39,7 @@ export default function About() {
             {/* Decorative frame border */}
             <div className="relative border border-crimson/30 p-1">
               <div className="border border-crimson/15 p-6 sm:p-8 flex items-center justify-center"
-                   style={{ minHeight: 'clamp(260px, 40vh, 480px)', background: 'linear-gradient(160deg, #1A0505 0%, #0D0505 100%)' }}>
+                   style={{ minHeight: 'clamp(260px, 40vh, 480px)', background: 'linear-gradient(160deg, #4F0A14 0%, #3D0A10 100%)' }}>
                 {/* Large cursive f monogram */}
                 <div className="text-center">
                   <img
