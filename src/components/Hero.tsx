@@ -1,25 +1,6 @@
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
-function Timecode() {
-  const ref = useRef<HTMLSpanElement>(null)
-  useEffect(() => {
-    let frames = 0
-    const pad = (n: number) => String(n).padStart(2, '0')
-    const id = setInterval(() => {
-      frames++
-      if (ref.current) {
-        const ff = frames % 24
-        const ss = Math.floor(frames / 24) % 60
-        const mm = Math.floor(frames / (24 * 60)) % 60
-        const hh = Math.floor(frames / (24 * 3600))
-        ref.current.textContent = `${pad(hh)}:${pad(mm)}:${pad(ss)}:${pad(ff)}`
-      }
-    }, 1000 / 24)
-    return () => clearInterval(id)
-  }, [])
-  return <span ref={ref} className="tabular-nums">00:00:00:00</span>
-}
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null)
@@ -42,22 +23,11 @@ export default function Hero() {
 
       {/* HUD — top */}
       <motion.div
-        className="absolute top-0 left-0 right-0 flex items-center justify-between px-5 sm:px-8 md:px-14 pt-6 z-10"
+        className="absolute top-0 left-0 right-0 flex items-center justify-end px-5 sm:px-8 md:px-14 pt-6 z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.6 }}
       >
-        <div className="flex items-center gap-3">
-          <motion.span
-            className="inline-block w-1.5 h-1.5 rounded-full bg-crimson"
-            animate={{ opacity: [1, 0.15, 1] }}
-            transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          <span className="font-mono text-xs tracking-widest text-cream/20 uppercase">Rec</span>
-          <span className="font-mono text-xs text-cream/12 ml-2" style={{ color: 'rgba(245,239,224,0.12)' }}>
-            <Timecode />
-          </span>
-        </div>
         <span className="font-sans text-sm tracking-widest2 uppercase text-cream/18" style={{ color: 'rgba(245,239,224,0.18)' }}>
           Sydney, AU — 2026
         </span>
