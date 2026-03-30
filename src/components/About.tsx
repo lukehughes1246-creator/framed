@@ -34,7 +34,7 @@ export default function About() {
         <div className="md:col-span-5">
           <motion.div
             className="relative"
-            style={{ y: imgY }}
+            style={{ y: imgY, willChange: 'transform' }}
           >
             {/* Decorative frame border */}
             <div className="relative border border-crimson/30 p-1">
