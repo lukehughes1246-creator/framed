@@ -21,7 +21,7 @@ export default function About() {
       ref={ref}
       id="about"
       className="relative py-20 md:py-32 overflow-hidden"
-      style={{ backgroundColor: '#4B0507' }}
+            style={{ backgroundColor: '#5E0809' }}
     >
       {/* Textured background */}
       <div
