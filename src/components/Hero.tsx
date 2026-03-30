@@ -68,20 +68,14 @@ export default function Hero() {
         className="flex flex-col items-center gap-6 z-10"
         style={{ opacity, y, willChange: 'opacity, transform' }}
       >
-        <motion.span
-          className="font-display italic leading-none"
-          style={{
-            fontSize: 'clamp(8rem, 28vw, 22rem)',
-            fontWeight: 300,
-            lineHeight: 1,
-            color: '#E8D5B0',
-          }}
+        <motion.img
+          src="/framed-logo-cream.png"
+          alt="Framed"
+          style={{ width: 'clamp(180px, 32vw, 420px)', height: 'auto' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.645, 0.045, 0.355, 1] }}
-        >
-          f
-        </motion.span>
+        />
       </motion.div>
 
       {/* Scroll */}
