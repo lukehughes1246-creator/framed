@@ -1,6 +1,56 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
+// Static particle data — outside component so it's never re-created
+const PARTICLES = [
+  { left: '8%',  size: 1.5, dur: 9,  delay: 0,   opacity: 0.22, drift: 12  },
+  { left: '19%', size: 1,   dur: 12, delay: 2.1, opacity: 0.15, drift: -18 },
+  { left: '31%', size: 2,   dur: 8,  delay: 0.8, opacity: 0.18, drift: 8   },
+  { left: '47%', size: 1.5, dur: 11, delay: 3.5, opacity: 0.25, drift: -12 },
+  { left: '58%', size: 1,   dur: 10, delay: 1.4, opacity: 0.14, drift: 20  },
+  { left: '67%', size: 2,   dur: 13, delay: 4,   opacity: 0.20, drift: -8  },
+  { left: '74%', size: 1,   dur: 9,  delay: 2.7, opacity: 0.16, drift: 15  },
+  { left: '82%', size: 1.5, dur: 11, delay: 0.3, opacity: 0.20, drift: -22 },
+  { left: '23%', size: 1,   dur: 14, delay: 5,   opacity: 0.12, drift: 10  },
+  { left: '55%', size: 1.5, dur: 8,  delay: 1.9, opacity: 0.18, drift: -14 },
+  { left: '38%', size: 2,   dur: 10, delay: 3.2, opacity: 0.22, drift: 18  },
+  { left: '88%', size: 1,   dur: 12, delay: 0.6, opacity: 0.14, drift: -10 },
+  { left: '13%', size: 1.5, dur: 9,  delay: 4.3, opacity: 0.20, drift: 22  },
+  { left: '44%', size: 1,   dur: 11, delay: 2.5, opacity: 0.16, drift: -16 },
+  { left: '71%', size: 2,   dur: 13, delay: 1.2, opacity: 0.24, drift: 8   },
+]
+
+function DustParticles() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {PARTICLES.map((p, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            left: p.left,
+            bottom: 0,
+            width: p.size,
+            height: p.size,
+            backgroundColor: '#F5EFE0',
+          }}
+          animate={{
+            y: [0, '-110vh'],
+            x: [0, p.drift],
+            opacity: [0, p.opacity, p.opacity, 0],
+          }}
+          transition={{
+            duration: p.dur,
+            delay: p.delay,
+            repeat: Infinity,
+            ease: 'linear',
+            times: [0, 0.08, 0.92, 1],
+          }}
+        />
+      ))}
+    </div>
+  )
+}
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null)
@@ -20,6 +70,9 @@ export default function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{ background: 'radial-gradient(ellipse at 50% 48%, rgba(75,5,7,0.28) 0%, transparent 60%)' }}
       />
+
+      {/* Dust particles */}
+      <DustParticles />
 
       {/* HUD — top */}
       <motion.div
