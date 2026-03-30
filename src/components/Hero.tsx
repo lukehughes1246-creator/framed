@@ -74,7 +74,7 @@ export default function Hero() {
             fontSize: 'clamp(8rem, 28vw, 22rem)',
             fontWeight: 300,
             lineHeight: 1,
-            color: '#F5EFE0',
+            color: '#E8D5B0',
           }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
