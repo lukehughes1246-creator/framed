@@ -69,12 +69,12 @@ export default function Hero() {
         style={{ opacity, y, willChange: 'opacity, transform' }}
       >
         <motion.span
-          className="font-display italic text-crimson leading-none"
+          className="font-display italic leading-none"
           style={{
             fontSize: 'clamp(8rem, 28vw, 22rem)',
             fontWeight: 300,
             lineHeight: 1,
-            color: '#5C0A14',
+            color: '#F5EFE0',
           }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
