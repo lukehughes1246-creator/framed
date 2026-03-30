@@ -84,7 +84,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-10">
               <div
                 className="grid md:grid-cols-2 gap-7 md:gap-10"
-                style={{ backgroundColor: '#0D0505', padding: 'clamp(1.25rem, 5vw, 3rem)', border: '1px solid rgba(92,10,20,0.15)' }}
+                style={{ backgroundColor: '#3D0A10', padding: 'clamp(1.25rem, 5vw, 3rem)', border: '1px solid rgba(92,10,20,0.15)' }}
               >
                 {field('Your Name', 'name', 'text', 'Full name')}
                 {field('Email', 'email', 'email', 'hello@yourbrand.com')}
