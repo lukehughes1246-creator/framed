@@ -17,9 +17,9 @@ export default {
           dark:  '#4B0507',
         },
         ink: {
-          DEFAULT: '#4B0507',
-          muted:   '#4B0507',
-          subtle:  '#4B0507',
+                    DEFAULT: '#0D0505',
+                    muted:   '#2A1515',
+                    subtle:  '#4A2525',
         },
       },
       fontFamily: {
