@@ -32,19 +32,32 @@ export default function Nav() {
 
   return (
     <>
-      {/* Plain header — no transform/opacity on the outer element so no
-          accidental compositing layer that blocks transparency */}
-      <header className="fixed top-0 left-0 right-0 z-50">
+      <header className="fixed top-0 left-0 right-0 z-50" style={{ background: 'none' }}>
+
+        {/* Frosted glass bg — only mounted when scrolled, so truly absent at page top */}
+        <AnimatePresence>
+          {scrolled && (
+            <motion.div
+              key="nav-bg"
+              className="absolute inset-0 pointer-events-none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              style={{
+                backgroundColor: 'rgba(245,239,224,0.88)',
+                backdropFilter: 'blur(14px)',
+                WebkitBackdropFilter: 'blur(14px)',
+                borderBottom: '1px solid rgba(92,10,20,0.12)',
+              }}
+            />
+          )}
+        </AnimatePresence>
+
+        {/* Nav content */}
         <div
-          className="flex items-center justify-between mx-5 sm:mx-8 md:mx-16 py-4 md:py-5"
-          style={{
-            opacity: visible ? 1 : 0,
-            borderBottom: scrolled ? '1px solid rgba(92,10,20,0.12)' : '1px solid transparent',
-            backdropFilter: scrolled ? 'blur(14px)' : 'none',
-            WebkitBackdropFilter: scrolled ? 'blur(14px)' : 'none',
-            backgroundColor: scrolled ? 'rgba(245,239,224,0.88)' : 'transparent',
-            transition: 'opacity 0.8s ease, background-color 0.5s ease, border-color 0.5s ease',
-          }}
+          className="relative flex items-center justify-between mx-5 sm:mx-8 md:mx-16 py-4 md:py-5"
+          style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.8s ease' }}
         >
           {/* Logo */}
           <button
@@ -59,10 +72,11 @@ export default function Nav() {
               style={{ filter: scrolled ? 'brightness(0)' : 'none', transition: 'filter 0.5s ease' }}
             />
             <span
-              className="font-display text-lg md:text-xl text-crimson uppercase font-light"
+              className="font-display text-lg md:text-xl uppercase font-light"
               style={{
                 letterSpacing: '0.22em',
-                color: menuOpen ? '#F5EFE0' : undefined,
+                color: menuOpen ? '#F5EFE0' : scrolled ? '#5C0A14' : '#F5EFE0',
+                transition: 'color 0.4s ease',
               }}
             >
               Framed
@@ -75,7 +89,8 @@ export default function Nav() {
               <button
                 key={link}
                 onClick={() => scrollTo(link)}
-                className="relative font-display text-sm tracking-widest text-ink/60 uppercase hover:text-crimson transition-colors duration-300 group"
+                className="relative font-display text-sm tracking-widest uppercase transition-colors duration-300 group"
+                style={{ color: scrolled ? 'rgba(13,5,5,0.6)' : 'rgba(245,239,224,0.6)' }}
               >
                 {link}
                 <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-crimson transition-all duration-300 group-hover:w-full" />
@@ -86,7 +101,11 @@ export default function Nav() {
           {/* Desktop CTA */}
           <a
             href="mailto:hello@framed.com.au"
-            className="hidden md:block font-display text-sm tracking-widest uppercase border border-crimson/30 text-crimson px-5 py-2.5 hover:bg-crimson hover:text-cream transition-all duration-300"
+            className="hidden md:block font-display text-sm tracking-widest uppercase px-5 py-2.5 transition-all duration-300"
+            style={{
+              border: scrolled ? '1px solid rgba(92,10,20,0.3)' : '1px solid rgba(245,239,224,0.3)',
+              color: scrolled ? '#5C0A14' : '#F5EFE0',
+            }}
           >
             Email us
           </a>
@@ -99,13 +118,13 @@ export default function Nav() {
           >
             <motion.span
               className="block h-px w-6 origin-center"
-              style={{ backgroundColor: menuOpen ? '#F5EFE0' : '#5C0A14' }}
+              style={{ backgroundColor: menuOpen ? '#F5EFE0' : scrolled ? '#5C0A14' : '#F5EFE0' }}
               animate={menuOpen ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.3 }}
             />
             <motion.span
               className="block h-px origin-center"
-              style={{ backgroundColor: menuOpen ? '#F5EFE0' : '#5C0A14', width: menuOpen ? 24 : 16 }}
+              style={{ backgroundColor: menuOpen ? '#F5EFE0' : scrolled ? '#5C0A14' : '#F5EFE0', width: menuOpen ? 24 : 16 }}
               animate={menuOpen ? { rotate: -45, y: -4, width: 24 } : { rotate: 0, y: 0, width: 16 }}
               transition={{ duration: 0.3 }}
             />
