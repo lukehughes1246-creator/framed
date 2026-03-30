@@ -180,24 +180,23 @@ export default function Work() {
         <div className="rule mt-6" />
       </div>
 
-      {/* Mobile: 2-col grid. Desktop: full editorial asymmetric layout */}
-      <div className="grid grid-cols-2 md:grid-cols-12 gap-4 sm:gap-6 md:gap-8">
-        {/* Row 1: large left (7 cols) + tall right (5 cols) */}
+      {/* Row 1: wide (7 cols) + tall (5 cols), tops aligned */}
+      {/* Row 2: three equal columns, tops aligned */}
+      <div className="grid grid-cols-2 md:grid-cols-12 gap-4 sm:gap-6 md:gap-8 items-start">
         <div className="col-span-2 md:col-span-7">
           <ProjectCard project={projects[1]} index={0} />
         </div>
-        <div className="col-span-1 md:col-span-5 md:mt-16">
+        <div className="col-span-1 md:col-span-5">
           <ProjectCard project={projects[0]} index={1} />
         </div>
 
-        {/* Row 2: small (4) + medium (4) + small (4), offset top */}
-        <div className="col-span-1 md:col-span-4 md:mt-[-4rem]">
+        <div className="col-span-1 md:col-span-4">
           <ProjectCard project={projects[2]} index={2} />
         </div>
         <div className="col-span-1 md:col-span-4">
           <ProjectCard project={projects[3]} index={3} />
         </div>
-        <div className="col-span-2 md:col-span-4 md:mt-8">
+        <div className="col-span-2 md:col-span-4">
           <ProjectCard project={projects[4]} index={4} />
         </div>
       </div>
